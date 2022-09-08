@@ -71,7 +71,10 @@
                         <input type="checkbox" id="logCheck">
                         <label for="logCheck" class="text"> Remember me</label>
                     </div>
-                    <a href="{{ url('/rest') }}" class="text"> Forgot password?</a>
+                    {{-- @if (Route:has('password.request')) --}}
+                        <a href="{{ url('/rest') }}" class="text"> Forgot password?</a> 
+                    {{-- @endif --}}
+                   
                 </div>
 
                <div class=>

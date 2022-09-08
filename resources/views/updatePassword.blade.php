@@ -26,15 +26,15 @@
 </head>
 <body>
 <style>
-    .BtnRest{
-    padding: 1rem 1rem;
+    .BtnUpd{
+    padding: 1rem 0.5rem;
     font-size: 1.2rem;
     color: #fff;
     border-color: #14265c;
     background: var(--movvv-color);
     border-radius: 10%;
     cursor: pointer;
-    margin-left: 1.6rem;
+    margin-left: 25%;
     margin-top: -0.5rem;
     }
 </style>
@@ -62,35 +62,55 @@
     <strong>{{ $message }}</strong>
 </div>
 @endif
-   <div class="forms">
-       <div class="form login">
+   <div class="forms" >
+       <div class="form login" >
         <p style="font-size: 1.4rem ; text-align: center;">RESET PASSWORD</p>
-           <form method="POST" action="{{ route('password.email') }}" >
-           
-                @csrf
-               
+        <form method="POST" action="{{ route('password.update') }}">
+            @csrf
 
-              
-                        <div class="input-field">
-                       <input id="email" type="email" name="email" placeholder= "Enter your email" class="input @error('email') is-invalid @enderror
-                       " value="{{ old('email') }}" required autocomplete="email" autofocus>
-                       <i class="fas fa-envelope icon"></i>
-                        @error('email')
+            <input type="hidden" name="token" value="{{ request()->token }}">
+
+            <div class="row mb-3">
+                <label for="email" class="col-md-3 col-form-label text-md-end">{{ __('Email Address') }}</label>
+
+                <div class="col-md-7">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+
+                    @error('email')
                         <span class="invalid-feedback" role="alert">
-                                <strong><br><br>{{ $message }} <br></strong>
-                               
+                            <strong>{{ $message }}</strong>
                         </span>
-                        @enderror
-                    </div>
+                    @enderror
+                </div>
+            </div>
 
-                    <div class=input-field>
-                        <button type="submit" class="BtnRest" >
-                           Send Password Reset Link
-                        </button>
-                 </div>
-               
-     
-            </form>
+            <div class="row mb-3">
+                <label for="password" class="col-md-3 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                <div class="col-md-7">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label for="password-confirm" class="col-md-3 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                <div class="col-md-7">
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                </div>
+            </div>
+            <div class=input-field>
+                <button type="submit" class="BtnUpd" >
+                    Reset Password
+                </button>
+         </div>
+        </form>
      </div>
 
     

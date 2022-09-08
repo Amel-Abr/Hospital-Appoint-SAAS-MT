@@ -107,12 +107,6 @@ class AccountController extends Controller
         $tenant->update($dataT);
         auth()->user()->update($data);
 
-
-        // return redirect()->route('account')->with([
-         
-        //     'message' => 'Updated successfully',
-        //     'alert-type' => 'success'
-        // ]);
         return redirect()->back()->with('success', 'Updated successfully');
     }
 
@@ -127,3 +121,4 @@ class AccountController extends Controller
         //
     }
 }
+ 

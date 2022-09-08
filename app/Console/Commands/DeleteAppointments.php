@@ -18,7 +18,7 @@ class DeleteAppointments extends Command
     /**
      * The console command description.
      *
-     * @var string
+     * @var string 
      */
     protected $description = 'Delete Trashed Appointments';
 

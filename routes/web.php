@@ -23,6 +23,7 @@ use App\Http\Controllers\registerController;
 use Illuminate\Routing\Route as RoutingRoute;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\SubscriptionController;
+use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Http\Controllers\Patient\AuthenticatedSessionController;
 
 
@@ -40,11 +41,16 @@ use Laravel\Fortify\Http\Controllers\Patient\AuthenticatedSessionController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// Route::domain('{fullname}.'.'hospital-app-saas.test')->groupe(function() {
+//   Route::prefix('/admin')->middleware(['auth','isAdmin'])->group(function () {
+//     Route::get('/dashboard',[HomeController::class,'index'])->name('dashboard');
+//     Route::get('doctors','DoctorController@index') ->name('admin.doctors');
+// });
+// });
 Route::post('/registration',[registerController::class,'registration'])->name('registration');
 Route::get('/home',[HomeController::class,"redirect"])->middleware('auth')->name('home');
 Route::get('/rest',[registerController::class,'rest'])->name('rest_password');
-
+ 
 //            ****************Admin**********
 Route::prefix('/admin')->middleware(['auth','isAdmin'])->group(function () {
    Route::get('/dashboard',[HomeController::class,'index'])->name('dashboard');
